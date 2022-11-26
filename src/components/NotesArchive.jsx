@@ -14,15 +14,18 @@ const NotesArchive = () => {
                         </p>
                     </div>
                     <div className="px-6 pt-4 pb-5">
-                        <button class="bg-transparent hover:bg-orange-400  text-orange-400 font-semibold hover:text-white py-2 px-4 border border-orange-400  hover:border-transparent rounded mr-2">
-                            Edit
-                        </button>
-                        <button class="bg-transparent hover:bg-red-600 text-red-600 font-semibold hover:text-white py-2 px-4 border border-red-600 hover:border-transparent rounded mr-2">
-                            Delete
-                        </button>
-                        <button class="bg-transparent hover:bg-[#61DAFB] text-[#61DAFB] font-semibold hover:text-white py-2 px-4 border border-[#61DAFB] hover:border-transparent rounded">
-                            Unarchive
-                        </button>
+                        <div>
+                            <button className="bg-transparent hover:bg-orange-400  text-orange-400 font-semibold hover:text-white py-2 px-4 border border-orange-400  hover:border-transparent rounded mr-2">
+                                Edit
+                            </button>
+                            <button className="bg-transparent hover:bg-red-600 text-red-600 font-semibold hover:text-white py-2 px-4 border border-red-600 hover:border-transparent rounded mr-2">
+                                Delete
+                            </button>
+                            <button className="bg-transparent hover:bg-[#61DAFB] text-[#61DAFB] font-semibold hover:text-white py-2 px-4 border border-[#61DAFB] hover:border-transparent rounded">
+                                Unarchive
+                            </button>
+                        </div>
+
                     </div>
                 </div>
             </div>

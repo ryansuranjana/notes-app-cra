@@ -6,29 +6,27 @@ class Storagebase {
 
     static getById(key, id) {
         const datas = JSON.parse(localStorage.getItem(key))
-        const result = datas[0].find((value) => value.id === id)
+        const result = datas.find((value) => value.id === id)
         return result
     }
 
     static store(key, value) {
         const datas = JSON.parse(localStorage.getItem(key))
-        datas[0].push(value)
+        datas.push(value)
         return localStorage.setItem(key, JSON.stringify(datas))
     }
 
     static update(key, id, value) {
         const datas = JSON.parse(localStorage.getItem(key))
-        const datasFilter = datas[0].filter((data) => data.id !== id)
+        const datasFilter = datas.filter((data) => data.id !== id)
         datasFilter.push(value)
-        const result = [datasFilter]
-        return localStorage.setItem(key, JSON.stringify(result))
+        return localStorage.setItem(key, JSON.stringify(datasFilter))
     }
 
     static delete(key, id) {
         const datas = JSON.parse(localStorage.getItem(key))
         const datasFilter = datas[0].filter((data) => data.id !== id)
-        const result = [datasFilter]
-        return localStorage.setItem(key, JSON.stringify(result))
+        return localStorage.setItem(key, JSON.stringify(datasFilter))
     }
 }
 

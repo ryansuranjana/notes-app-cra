@@ -1,7 +1,7 @@
 import moment from 'moment/moment'
 import React from 'react'
 
-const NotesArchive = ({ notes, editNote }) => {
+const NotesArchive = ({ notes, editNote, showModal, setModalTitle, handleDelete }) => {
     return (
         <div className='mb-40'>
             <h3 className='font-bold md:text-2xl text-xl'>Archive</h3>
@@ -19,7 +19,11 @@ const NotesArchive = ({ notes, editNote }) => {
                                 </div>
                                 <div className="px-6 md:pt-4 pt-1 md:pb-5 pb-4">
                                     <div>
-                                        <button className="bg-transparent hover:bg-orange-400  text-orange-400 md:font-semibold md:text-base text-sm hover:text-white py-2 md:px-4 px-3 border border-orange-400  hover:border-transparent rounded mr-2" onClick={() => editNote(note.id)}>
+                                        <button className="bg-transparent hover:bg-orange-400  text-orange-400 md:font-semibold md:text-base text-sm hover:text-white py-2 md:px-4 px-3 border border-orange-400  hover:border-transparent rounded mr-2" onClick={() => {
+                                            editNote(note.id)
+                                            showModal(true)
+                                            setModalTitle('Edit Note')
+                                        }}>
                                             Edit
                                         </button>
                                         <button className="bg-transparent hover:bg-red-600 text-red-600 md:font-semibold md:text-base text-sm hover:text-white py-2 md:px-4 px-3 border border-red-600 hover:border-transparent rounded mr-2">

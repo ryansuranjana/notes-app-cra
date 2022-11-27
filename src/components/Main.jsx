@@ -13,6 +13,7 @@ const Main = () => {
   const [notes, setNotes] = useState([])
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
+  const [idEdit, setIdEdit] = useState('')
   const showModal = () => setIsOpen(true)
   const closeModal = () => setIsOpen(false)
 
@@ -27,16 +28,41 @@ const Main = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    const note = {
-      id: nanoid(),
-      title,
-      body,
-      created_at: new Date(),
-      archived: false
+
+    if(idEdit) {
+      const getNote = Storagebase.getById('NOTES', idEdit)
+      if(getNote) {
+        const note = {
+          id: getNote.id,
+          title,
+          body,
+          created_at: new Date(),
+          archived: getNote.archived
+        }
+        Storagebase.update('NOTES', idEdit, note)
+      }
+    } else {
+      const note = {
+        id: nanoid(),
+        title,
+        body,
+        created_at: new Date(),
+        archived: false
+      }
+      Storagebase.store('NOTES', note)
     }
-    Storagebase.store('NOTES', note)
+
     setNotes(Storagebase.get('NOTES'))
     setIsOpen(false)
+    setTitle('')
+    setBody('')
+  }
+
+  const editNote = (id) => {
+    const data = Storagebase.getById('NOTES', id)
+    setTitle(data.title)
+    setBody(data.body)
+    setIdEdit(id)
   }
 
   return (
@@ -46,6 +72,7 @@ const Main = () => {
           <button className="bg-gray-300 ml-2 hover:bg-gray-400 text-gray-800 font-bold md:py-3 py-1 md:px-4 px-2 rounded inline-flex items-center" onClick={() => {
             showModal()
             setModalTitle('Add Note')
+            setIdEdit('')
           }}>
             <AiOutlinePlus />
           </button>
@@ -67,8 +94,8 @@ const Main = () => {
           </form>
       </Rodal>
       <div className='w-4/5 m-auto'>
-        <NotesActive notes={notes}/>
-        <NotesArchive notes={notes}/>
+        <NotesActive notes={notes} editNote={editNote} showModal={showModal} setModalTitle={setModalTitle}/>
+        <NotesArchive notes={notes} editNote={editNote} showModal={showModal} setModalTitle={setModalTitle}/>
       </div>
     </>
   )

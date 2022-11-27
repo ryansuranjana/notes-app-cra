@@ -4,7 +4,7 @@ const NotesActive = () => {
     return (
         <div className='mt-5 mb-10'>
             <h3 className='font-bold text-2xl'>Notes Active</h3>
-            <div className='grid grid-cols-3 gap-3 mt-5'>
+            <div className='grid md:grid-cols-3 gap-3 mt-5'>
                 <div className="max-w-sm h-max rounded overflow-hidden shadow-lg border border-[#61DAFB]">
                     <div className="px-6 py-4">
                         <div className="font-bold text-xl mb-2">The Coldest Sunset</div>

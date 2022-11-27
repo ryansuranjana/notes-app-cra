@@ -12,14 +12,14 @@ class Storagebase {
 
     static store(key, value) {
         const datas = JSON.parse(localStorage.getItem(key))
-        datas.push(value)
+        datas.unshift(value)
         return localStorage.setItem(key, JSON.stringify(datas))
     }
 
     static update(key, id, value) {
         const datas = JSON.parse(localStorage.getItem(key))
         const datasFilter = datas.filter((data) => data.id !== id)
-        datasFilter.push(value)
+        datasFilter.unshift(value)
         return localStorage.setItem(key, JSON.stringify(datasFilter))
     }
 

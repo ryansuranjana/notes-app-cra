@@ -13,16 +13,16 @@ const Main = () => {
 
   return (
     <>
-      <div className='w-full bg-[#20232A] text-center p-5'>
-          <input className="shadow appearance-none border rounded w-80 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Search Notes" />
-          <button className="bg-gray-300 ml-2 hover:bg-gray-400 text-gray-800 font-bold py-3 px-4 rounded inline-flex items-center" onClick={() => {
+      <div className='w-full bg-[#20232A] text-center md:p-5 p-3'>
+          <input className="shadow appearance-none border rounded md:w-80 md:py-2 py-1 px-3 text-gray-700 placeholder:md:text-base placeholder:text-sm leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Search Notes" />
+          <button className="bg-gray-300 ml-2 hover:bg-gray-400 text-gray-800 font-bold md:py-3 py-1 md:px-4 px-2 rounded inline-flex items-center" onClick={() => {
             showModal()
             setModalTitle('Add Note')
           }}>
             <AiOutlinePlus />
           </button>
       </div>
-      <Rodal visible={modalIsOpen} onClose={closeModal} animation="fade" width="500" height="270">
+      <Rodal visible={modalIsOpen} onClose={closeModal} animation="fade" width="370" height="270">
           <div>
             <h3>{modalTitle}</h3>
           </div>

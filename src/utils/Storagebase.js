@@ -25,7 +25,7 @@ class Storagebase {
 
     static delete(key, id) {
         const datas = JSON.parse(localStorage.getItem(key))
-        const datasFilter = datas[0].filter((data) => data.id !== id)
+        const datasFilter = datas.filter((data) => data.id !== id)
         return localStorage.setItem(key, JSON.stringify(datasFilter))
     }
 }

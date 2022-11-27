@@ -6,6 +6,8 @@ import Rodal from 'rodal'
 import 'rodal/lib/rodal.css'
 import Storagebase from '../utils/Storagebase'
 import { nanoid } from 'nanoid'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Main = () => {
   const [modalIsOpen, setIsOpen] = useState(false)
@@ -40,6 +42,7 @@ const Main = () => {
           archived: getNote.archived
         }
         Storagebase.update('NOTES', idEdit, note)
+        toast.success("Note updated successfully!")
       }
     } else {
       const note = {
@@ -50,6 +53,7 @@ const Main = () => {
         archived: false
       }
       Storagebase.store('NOTES', note)
+      toast.success("Note created successfully!")
     }
 
     setNotes(Storagebase.get('NOTES'))
@@ -68,6 +72,7 @@ const Main = () => {
   const handleDelete = (id) => {
     Storagebase.delete('NOTES', id)
     setNotes(Storagebase.get('NOTES'))
+    toast.success("Note deleted successfully!")
   }
 
   const handleArchive = (id, archived) => {
@@ -109,6 +114,7 @@ const Main = () => {
         <NotesActive notes={notes} editNote={editNote} showModal={showModal} setModalTitle={setModalTitle} handleDelete={handleDelete} handleArchive={handleArchive}/>
         <NotesArchive notes={notes} editNote={editNote} showModal={showModal} setModalTitle={setModalTitle} handleDelete={handleDelete} handleArchive={handleArchive}/>
       </div>
+      <ToastContainer />
     </>
   )
 }

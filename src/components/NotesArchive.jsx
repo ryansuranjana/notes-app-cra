@@ -1,7 +1,7 @@
 import moment from 'moment/moment'
 import React from 'react'
 
-const NotesArchive = ({ notes, editNote, showModal, setModalTitle, handleDelete }) => {
+const NotesArchive = ({ notes, editNote, showModal, setModalTitle, handleDelete, handleArchive }) => {
     return (
         <div className='mb-40'>
             <h3 className='font-bold md:text-2xl text-xl'>Archive</h3>
@@ -26,10 +26,10 @@ const NotesArchive = ({ notes, editNote, showModal, setModalTitle, handleDelete 
                                         }}>
                                             Edit
                                         </button>
-                                        <button className="bg-transparent hover:bg-red-600 text-red-600 md:font-semibold md:text-base text-sm hover:text-white py-2 md:px-4 px-3 border border-red-600 hover:border-transparent rounded mr-2">
+                                        <button className="bg-transparent hover:bg-red-600 text-red-600 md:font-semibold md:text-base text-sm hover:text-white py-2 md:px-4 px-3 border border-red-600 hover:border-transparent rounded mr-2" onClick={() => handleDelete(note.id)}>
                                             Delete
                                         </button>
-                                        <button className="bg-transparent hover:bg-[#61DAFB] text-[#61DAFB] md:font-semibold md:text-base text-sm hover:text-white py-2 md:px-4 px-3 border border-[#61DAFB] hover:border-transparent rounded">
+                                        <button className="bg-transparent hover:bg-[#61DAFB] text-[#61DAFB] md:font-semibold md:text-base text-sm hover:text-white py-2 md:px-4 px-3 border border-[#61DAFB] hover:border-transparent rounded" onClick={() => handleArchive(note.id, false)}>
                                             Unarchive
                                         </button>
                                     </div>

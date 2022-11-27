@@ -70,6 +70,13 @@ const Main = () => {
     setNotes(Storagebase.get('NOTES'))
   }
 
+  const handleArchive = (id, archived) => {
+    const getNote = Storagebase.getById('NOTES', id)
+    getNote.archived = archived
+    Storagebase.update('NOTES', id, getNote)
+    setNotes(Storagebase.get('NOTES'))
+  }
+
   return (
     <>
       <div className='w-full bg-[#20232A] text-center md:p-5 p-3'>
@@ -99,8 +106,8 @@ const Main = () => {
           </form>
       </Rodal>
       <div className='w-4/5 m-auto'>
-        <NotesActive notes={notes} editNote={editNote} showModal={showModal} setModalTitle={setModalTitle} handleDelete={handleDelete}/>
-        <NotesArchive notes={notes} editNote={editNote} showModal={showModal} setModalTitle={setModalTitle} handleDelete={handleDelete}/>
+        <NotesActive notes={notes} editNote={editNote} showModal={showModal} setModalTitle={setModalTitle} handleDelete={handleDelete} handleArchive={handleArchive}/>
+        <NotesArchive notes={notes} editNote={editNote} showModal={showModal} setModalTitle={setModalTitle} handleDelete={handleDelete} handleArchive={handleArchive}/>
       </div>
     </>
   )

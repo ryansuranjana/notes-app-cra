@@ -2,12 +2,13 @@ import moment from 'moment/moment'
 import React from 'react'
 
 const NotesArchive = ({ notes, editNote, showModal, setModalTitle, handleDelete, handleArchive }) => {
+    const notesArchive = notes.filter((note) => note.archived === true)
     return (
         <div className='mb-40'>
             <h3 className='font-bold md:text-2xl text-xl'>Archive</h3>
-            {notes.length !== 0 ? (
+            {notesArchive.length !== 0 ? (
                 <div className='grid md:grid-cols-3 gap-3 md:mt-5 mt-3'>
-                    {notes.filter((note) => note.archived === true).map((note) => 
+                    {notesArchive.map((note) => 
                         (
                             <div className="max-w-sm h-max rounded overflow-hidden shadow-lg border border-[#61DAFB]" key={note.id}>
                                 <div className="px-6 py-4">

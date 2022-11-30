@@ -2,12 +2,13 @@ import moment from 'moment/moment'
 import React from 'react'
 
 const NotesActive = ({ notes, editNote, showModal, setModalTitle, handleDelete, handleArchive }) => {
+    const notesActive = notes.filter((note) => note.archived === false)
     return (
         <div className='mt-5 mb-10'>
             <h3 className='font-bold md:text-2xl text-xl'>Notes Active</h3>
-            {notes.length !== 0 ? (
+            {notesActive.length !== 0 ? (
                 <div className='grid md:grid-cols-3 gap-3 md:mt-5 mt-3'>
-                    {notes.filter((note) => note.archived === false).map((note) => 
+                    {notesActive.map((note) => 
                         (
                             <div className="max-w-sm h-max rounded overflow-hidden shadow-lg border border-[#61DAFB]" key={note.id}>
                                 <div className="px-6 py-4">

@@ -16,6 +16,7 @@ const Main = () => {
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
   const [idEdit, setIdEdit] = useState('')
+  const [search, setSearch] = useState('')
   const showModal = () => setIsOpen(true)
   const closeModal = () => setIsOpen(false)
 
@@ -85,7 +86,7 @@ const Main = () => {
   return (
     <>
       <div className='w-full bg-[#20232A] text-center md:p-5 p-3'>
-          <input className="shadow appearance-none border rounded md:w-80 md:py-2 py-1 px-3 text-gray-700 placeholder:md:text-base placeholder:text-sm leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Search Notes" />
+          <input className="shadow appearance-none border rounded md:w-80 md:py-2 py-1 px-3 text-gray-700 placeholder:md:text-base placeholder:text-sm leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Search Notes" value={search} onChange={(event) => setSearch(event.target.value)}/>
           <button className="bg-gray-300 ml-2 hover:bg-gray-400 text-gray-800 font-bold md:py-3 py-1 md:px-4 px-2 rounded inline-flex items-center" onClick={() => {
             showModal()
             setModalTitle('Add Note')
@@ -111,8 +112,8 @@ const Main = () => {
           </form>
       </Rodal>
       <div className='w-4/5 m-auto'>
-        <NotesActive notes={notes} editNote={editNote} showModal={showModal} setModalTitle={setModalTitle} handleDelete={handleDelete} handleArchive={handleArchive}/>
-        <NotesArchive notes={notes} editNote={editNote} showModal={showModal} setModalTitle={setModalTitle} handleDelete={handleDelete} handleArchive={handleArchive}/>
+        <NotesActive notes={notes.filter((note) => note.title.toLowerCase().includes(search.toLowerCase()))} editNote={editNote} showModal={showModal} setModalTitle={setModalTitle} handleDelete={handleDelete} handleArchive={handleArchive}/>
+        <NotesArchive notes={notes.filter((note) => note.title.toLowerCase().includes(search.toLowerCase()))} editNote={editNote} showModal={showModal} setModalTitle={setModalTitle} handleDelete={handleDelete} handleArchive={handleArchive}/>
       </div>
       <ToastContainer />
     </>
